@@ -10,7 +10,7 @@ $query = mysqli_query($koneksi,
      WHERE username='$username' AND password='$password'");
 
 $data = mysqli_fetch_assoc($query);
-
+// tes github
 if ($data) {
     $_SESSION['id_user'] = $data['id_user'];
     $_SESSION['username'] = $data['username'];
