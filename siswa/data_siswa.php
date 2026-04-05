@@ -18,7 +18,7 @@ $query = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nis ASC");
         <div class="flex items-center gap-3">
              <a href="tambah_siswa.php" class="flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-2xl font-bold transition-all shadow-xl shadow-sky-600/30 text-[10px] tracking-widest uppercase">
                 <i class="fas fa-plus"></i>
-                <span>Add Student</span>
+                <span>Tambah Siswa</span>
             </a>
         </div>
     </div>

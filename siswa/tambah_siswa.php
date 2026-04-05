@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
     if ($insert) {
         echo "<script>alert('Data Siswa Berhasil Disimpan!'); window.location='data_siswa.php';</script>";
     } else {
-        // Menampilkan pesan error spesifik jika gagal
         $error = mysqli_error($conn);
         echo "<script>alert('Gagal Simpan! Error: $error');</script>";
     }
@@ -60,9 +59,14 @@ if (isset($_POST['submit'])) {
                 <select name="id_kelas" class="w-full bg-black/60 border border-white/10 rounded-2xl py-4 px-6 text-white outline-none focus:border-sky-500/50 transition-all" required>
                     <option value="">-- Pilih Kelas --</option>
                     <?php
-                    $ambil_kelas = mysqli_query($conn, "SELECT * FROM kelas");
+                    // Query Join untuk memunculkan nama kelas yang lengkap
+                    $ambil_kelas = mysqli_query($conn, "SELECT kelas.id_kelas, kelas.rombel, tingkat.tingkat, program_keahlian.program_keahlian 
+                                                        FROM kelas 
+                                                        JOIN tingkat ON kelas.id_tingkat = tingkat.id_tingkat 
+                                                        JOIN program_keahlian ON kelas.id_program_keahlian = program_keahlian.id_program_keahlian 
+                                                        ORDER BY tingkat.tingkat DESC");
                     while($k = mysqli_fetch_array($ambil_kelas)) {
-                        echo "<option value='".$k['id_kelas']."'>ID: ".$k['id_kelas']." - Kelas ".$k['rombel']."</option>";
+                        echo "<option value='".$k['id_kelas']."'>".$k['tingkat']." ".$k['program_keahlian']." ".$k['rombel']."</option>";
                     }
                     ?>
                 </select>

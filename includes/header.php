@@ -1,16 +1,15 @@
 <?php
-// Mendapatkan nama file aktif (misal: data_siswa.php)
+// Mendapatkan nama file aktif
 $current_page = basename($_SERVER['PHP_SELF']);
 
-// Mendapatkan nama folder tempat file ini berada (misal: siswa, guru, atau pages)
+// Mendapatkan nama folder tempat file ini berada
 $folder_saat_ini = basename(dirname($_SERVER['PHP_SELF']));
 
 /**
- * LOGIKA PREFIX DINAMIS
- * Jika kita berada di dalam sub-folder (pages, guru, siswa), 
- * kita butuh '../' untuk kembali ke root folder.
+ * LOGIKA PREFIX DINAMIS (RIO-SYS)
+ * Menambahkan 'pelanggaran' dan 'laporan' ke daftar sub-folder
  */
-$sub_folders = ['pages', 'guru', 'siswa'];
+$sub_folders = ['pages', 'guru', 'siswa', 'pelanggaran', 'kelas', 'laporan'];
 $prefix = in_array($folder_saat_ini, $sub_folders) ? '../' : '';
 ?>
 <!DOCTYPE html>
@@ -30,15 +29,11 @@ $prefix = in_array($folder_saat_ini, $sub_folders) ? '../' : '';
             background-color: #020617; 
             overflow-x: hidden; 
         }
-        
-        /* Custom Scrollbar Sidebar */
         aside::-webkit-scrollbar { width: 4px; }
         aside::-webkit-scrollbar-thumb { 
             background: rgba(56, 189, 248, 0.1); 
             border-radius: 10px; 
         }
-        
-        /* CSS Global Hover Tabel RIO-SYS */
         .hover-effect tr:hover {
             background-color: rgba(255, 255, 255, 0.05) !important;
             transition: all 0.2s ease;
@@ -73,7 +68,7 @@ $prefix = in_array($folder_saat_ini, $sub_folders) ? '../' : '';
                 </a>
 
                 <?php 
-                    $data_pages = ['data.php', 'data_guru.php', 'guru_nonaktif.php', 'data_siswa.php'];
+                    $data_pages = ['data.php', 'data_guru.php', 'guru_nonaktif.php', 'data_siswa.php', 'data_jenis.php', 'data_kelas.php', 'edit_guru.php', 'edit_siswa.php', 'tambah_guru.php', 'tambah_siswa.php'];
                     $is_data = in_array($current_page, $data_pages); 
                 ?>
                 <a href="<?= $prefix ?>pages/data.php" 
@@ -82,14 +77,21 @@ $prefix = in_array($folder_saat_ini, $sub_folders) ? '../' : '';
                     <span>Data</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl text-slate-400 hover:bg-white/5 hover:text-white transition-all font-semibold">
+                <?php $is_input = ($current_page == 'input_pelanggaran.php'); ?>
+                <a href="<?= $prefix ?>pages/input_pelanggaran.php" 
+                   class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all <?= $is_input ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'text-slate-400 hover:bg-white/5 hover:text-white' ?>">
                     <div class="w-6 flex justify-center"><i class="fas fa-file-signature text-lg"></i></div>
                     <span>Input Pelanggaran</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl text-slate-400 hover:bg-white/5 hover:text-white transition-all font-semibold">
+                <?php 
+                    $laporan_pages = ['laporan.php', 'laporan_pelanggaran.php', 'laporan_panggilan.php', 'laporan_perjanjian.php', 'laporan_pindah.php', 'rekap_perjanjian.php'];
+                    $is_laporan = in_array($current_page, $laporan_pages); 
+                ?>
+                <a href="<?= $prefix ?>pages/laporan.php"
+                   class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all <?= $is_laporan ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'text-slate-400 hover:bg-white/5 hover:text-white' ?>">
                     <div class="w-6 flex justify-center"><i class="fas fa-print text-lg"></i></div>
-                    <span>Rekap Laporan</span>
+                    <span>Laporan</span>
                 </a>
             </nav>
         </div>
