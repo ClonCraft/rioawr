@@ -9,7 +9,7 @@ $folder_saat_ini = basename(dirname($_SERVER['PHP_SELF']));
  * LOGIKA PREFIX DINAMIS (RIO-SYS)
  * Menambahkan 'pelanggaran' dan 'laporan' ke daftar sub-folder
  */
-$sub_folders = ['pages', 'guru', 'siswa', 'pelanggaran', 'kelas', 'laporan'];
+$sub_folders = ['pages', 'guru', 'siswa', 'pelanggaran', 'kelas', 'laporan', 'core'];
 $prefix = in_array($folder_saat_ini, $sub_folders) ? '../' : '';
 ?>
 <!DOCTYPE html>

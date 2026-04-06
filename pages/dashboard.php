@@ -27,11 +27,6 @@ $last_records = mysqli_query($conn, "SELECT s.nama_siswa, j.jenis, p.tanggal FRO
             <h2 class="text-blue-500 font-bold text-xs uppercase tracking-[4px]">System Overview</h2>
             <h1 class="text-4xl font-black text-white tracking-tight">Dashboard <span class="text-slate-500 font-light">Kedisiplinan</span></h1>
         </div>
-        <div class="flex gap-4">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-lg shadow-blue-600/20 flex items-center gap-2">
-                <i class="fas fa-plus text-xs"></i> Entri Baru
-            </button>
-        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
